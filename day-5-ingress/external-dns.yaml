@@ -1,0 +1,28 @@
+provider: aws
+logLevel: info
+policy: upsert-only
+
+domainFilters:
+  - krishnal.shop
+
+registry: txt
+txtOwnerId: my-cluster
+txtPrefix: "external-dns-"
+
+sources:
+  - ingress
+
+aws:
+  region: ap-south-1
+  zoneType: public
+  batchChangeSize: 1000
+
+rbac:
+  create: true
+
+serviceAccount:
+  create: false  # using default service account
+
+env:
+  - name: AWS_REGION
+    value: ap-south-1
